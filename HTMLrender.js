@@ -3,14 +3,14 @@ const path = require("path");
 const util = require("util");
 
 
-const Manager = require("./lib/Manager");
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
+const Manager = require("./lib/manager");
+const Engineer = require("./lib/engineer");
+const Intern = require("./lib/intern");
+const Employee = require("./lib/Employee");
 
+const templatesDir = path.resolve(__dirname, "./templates");
 
-const templatesDir = path.resolve(__dirname, "../templates");
-
-const outputDir = path.resolve(__dirname, "../output/");
+const outputDir = path.resolve(__dirname, "./output");
 
 
 const writeFile = util.promisify(fs.writeFile);
@@ -80,7 +80,7 @@ async function render(employees) {
     fs.mkdirSync(outputDir);
   }
   await writeFile(
-    path.resolve(outputDir, "index.html"),
+    path.resolve(outputDir, "team.html"),
     replacePlaceholder(employeeTemplate, "body", html.join(""))
   );
 }

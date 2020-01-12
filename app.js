@@ -1,7 +1,8 @@
 const inquirer = require('inquirer');
-// const render = require("/HTMLrender");
+const render = require("./HTMLrender");
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
+const Intern = require("./lib/intern");
 const teamMembers = [];
 
 
@@ -68,7 +69,7 @@ function runManager(){
     }
   ])
 .then(function (answers) {
-  const manager = new Manager(answers.name, parseInt(answers.id), answers.email, parseInt(answers.office));
+  const manager = new Manager(answers.name, Number(answers.id), answers.email, Number(answers.office));
   teamMembers.push(manager);
   addMember();
 });
@@ -125,7 +126,7 @@ function createEngineer () {
       }
 
   ]).then(function (answers) {
-      const engineer = new Engineer(answers.name, parseInt(answers.id), answers.email, answers.github);
+      const engineer = new Engineer(answers.name, Number(answers.id), answers.email, answers.github);
       teamMembers.push(engineer);
       addMember();
   });
@@ -156,7 +157,7 @@ function createIntern () {
       }
 
   ]).then(function (answers) {
-      const intern = new Intern(answers.name, parseInt(answers.id), answers.email, answers.school);
+      const intern = new Intern(answers.name, Number(answers.id), answers.email, answers.school);
       teamMembers.push(intern);
       addMember();
   });
